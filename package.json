@@ -1,0 +1,15 @@
+{
+  "homepage": "https://cdnurrenberg.github.io/BoardGameVisualizer/",
+  "scripts": {
+    "predeploy": "npm run build --prefix ./client",
+    "deploy": "gh-pages -d ./client/build",
+    "start": "node server/src/server.js"
+  },
+  "engine": {
+    "node": "13.x"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
+  }
+}
