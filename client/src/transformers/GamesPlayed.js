@@ -83,10 +83,9 @@ export const GamesPlayedTransformer = (games = []) => {
       for (let i = 0; i < lines; i += 1) {
 
         tooltip += results.slice(i * namesPerLine, (i + 1) * namesPerLine).map(
-          (r) => `<em>${r.player.split(/\s+/)[0]}</em>`
+          (r) => `<em>${r.player}</em>`
         ).join(', ') + "<br/>"
       }
-      // tooltip += results.map((r) => `<em>${r.player.split(/\s+/)[0]}</em>`).join(', ')
       return tooltip
     }
   }

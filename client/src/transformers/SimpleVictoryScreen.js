@@ -7,7 +7,7 @@ export const SimpleVictoryScreen = ([game]) => {
   // const [first, last] = this.key.split(/\s/g)
   //       return `${first} ${last[0]}.`
   const data = results.map((g, i) => ({
-    name: g.player.split(/\s/g)[0],
+    name: g.player,
     y: g.score
   }))
 

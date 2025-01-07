@@ -52,7 +52,8 @@ export const SocialNetworkTransformer = (games = []) => {
       allowOverlap: true,
       formatter(){
         const [first, last] = this.key.split(/\s/g)
-        return `${first} ${last[0]}.`
+        return this.key
+        // return `${first} ${last[0]}.`
       }
     }
   }];

@@ -42,9 +42,9 @@ const App = () => {
     }
     window.addEventListener('keydown', listener);
     return () => window.removeEventListener("keydown", listener)
-  }, [setShowErrors])
+  }, [])
   
-  const computedGames = useMemo(() => Games(data, headers), [data, headers])
+  const computedGames = Games(data, headers)
   useEffect(() => {
     if (showErrors) {
       setErrors(validateGameResponses(computedGames))
@@ -58,7 +58,10 @@ const App = () => {
     errors.forEach(notifyGameError)
   }, [errors])
   
-  const fetchRowCount = useCallback(async () => setRowCount((await Sheets.rowcount()).count), [])
+  const fetchRowCount = async () => {
+    const { count } = await Sheets.rowcount()
+    setRowCount(count)
+  }
 
   const fetchAllRows = useCallback(async () => {
     const dataToSet = await Sheets.rows();
@@ -71,19 +74,19 @@ const App = () => {
   useEffect(() => {
     fetchAllRows();
     fetchRowCount();
-  }, [fetchAllRows, fetchRowCount]);
+  }, []);
 
   // poll row count in the sheet periodically
   useEffect(() => {
     const interval = setInterval(() => {
       fetchRowCount();
-    }, 10 * 1000);
+    }, 1000);
     return () => clearInterval(interval)
-  }, [fetchRowCount])
+  }, [])
 
   useEffect(() => {
     fetchAllRows()
-  }, [rowCount, fetchAllRows]);
+  }, [rowCount]);
 
   return (<>
     <ToastContainer transition={Flip} position={'bottom-left'}/>
